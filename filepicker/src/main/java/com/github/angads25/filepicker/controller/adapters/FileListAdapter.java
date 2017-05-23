@@ -131,14 +131,13 @@ public class FileListAdapter extends BaseAdapter{
         }
         holder.type_icon.setContentDescription(item.getFilename());
         holder.name.setText(item.getFilename());
-        SimpleDateFormat sdate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        SimpleDateFormat stime = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
+        SimpleDateFormat sdate = new SimpleDateFormat(context.getString(R.string.date_time_format), Locale.getDefault());
         Date date = new Date(item.getTime());
         if(i==0&&item.getFilename().startsWith(context.getString(R.string.label_parent_dir))) {
             holder.type.setText(R.string.label_parent_directory);
         }
         else {
-            holder.type.setText(context.getString(R.string.last_edit) + sdate.format(date) + ", " + stime.format(date));
+            holder.type.setText(context.getString(R.string.last_edit) + sdate.format(date) );
         }
         if(holder.fmark.getVisibility()==View.VISIBLE) {
             if(i==0&&item.getFilename().startsWith(context.getString(R.string.label_parent_dir)))
@@ -151,7 +150,7 @@ public class FileListAdapter extends BaseAdapter{
                 holder.fmark.setChecked(false);
             }
         }
-        
+
         holder.fmark.setOnCheckedChangedListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(MaterialCheckbox checkbox, boolean isChecked) {
