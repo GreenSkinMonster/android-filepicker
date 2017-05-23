@@ -24,6 +24,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -99,6 +100,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_main);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         listView = (ListView) findViewById(R.id.fileList);
         select = (Button) findViewById(R.id.select);
         int size = MarkedItemList.getFileCount();
@@ -139,6 +141,19 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                 dismiss();
             }
         });
+        if (properties.enable_clear_button) {
+            Button clear = (Button) findViewById(R.id.clear);
+            clear.setVisibility(View.VISIBLE);
+            clear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (callbacks != null) {
+                        callbacks.onSelectedFilePaths(new String[0]);
+                    }
+                    dismiss();
+                }
+            });
+        }
         mFileListAdapter = new FileListAdapter(internalList, context, properties);
         mFileListAdapter.setNotifyItemCheckedListener(new NotifyItemChecked() {
             @Override

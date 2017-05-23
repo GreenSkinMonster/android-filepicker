@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
@@ -9,11 +8,19 @@
     style="?android:attr/background"
     android:id="@+id/linearLayout">
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@null"/>
+    <Button
+        style="?android:attr/buttonStyle"
+        android:background="@null"
+        android:text="@string/clear_button_label"
+        android:id="@+id/clear"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:visibility="gone"/>
 
     <Button
         style="?android:attr/buttonStyle"
@@ -24,7 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
-        android:layout_margin="8dp"
+        android:layout_toLeftOf="@+id/select"
+        android:layout_margin="4dp"
         android:padding="4dp"/>
 
     <Button
@@ -36,6 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
-        android:layout_margin="8dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="4dp"
         android:padding="4dp"/>
-</LinearLayout>
+
+</RelativeLayout>

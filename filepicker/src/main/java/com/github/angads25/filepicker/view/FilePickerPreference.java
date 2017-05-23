@@ -19,6 +19,7 @@ package com.github.angads25.filepicker.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.Preference;
@@ -116,8 +117,10 @@ public class FilePickerPreference extends Preference implements
     @Override
     public void onSelectedFilePaths(String[] files) {
         StringBuilder buff=new StringBuilder();
-        for(String path:files)
-        {   buff.append(path).append(":");
+        for (int i = 0; i < files.length; i++) {
+            buff.append(files[i]);
+            if (i != files.length - 1)
+                buff.append(":");
         }
         String dFiles = buff.toString();
         if (isPersistent()) {
@@ -174,6 +177,8 @@ public class FilePickerPreference extends Preference implements
 
     private void initProperties(AttributeSet attrs) {
         TypedArray tarr=getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.FilePickerPreference,0,0);
+        properties.root = Environment.getExternalStorageDirectory();
+        properties.error_dir = Environment.getExternalStorageDirectory();
         final int N = tarr.getIndexCount();
         for (int i = 0; i < N; ++i)
         {   int attr = tarr.getIndex(i);
@@ -209,6 +214,9 @@ public class FilePickerPreference extends Preference implements
             }
             else if (attr == R.styleable.FilePickerPreference_title_text) {
                 titleText=tarr.getString(R.styleable.FilePickerPreference_title_text);
+            }
+            else if (attr == R.styleable.FilePickerPreference_enable_clear_button) {
+                properties.enable_clear_button=tarr.getBoolean(R.styleable.FilePickerPreference_enable_clear_button,false);
             }
         }
         tarr.recycle();

@@ -74,6 +74,8 @@ public class DialogProperties {
      */
     public String[] extensions;
 
+    public boolean enable_clear_button;
+
     public DialogProperties() {
         selection_mode = DialogConfigs.SINGLE_MODE;
         selection_type = DialogConfigs.FILE_SELECT;
@@ -81,5 +83,6 @@ public class DialogProperties {
         error_dir = new File(DialogConfigs.DEFAULT_DIR);
         offset = new File(DialogConfigs.DEFAULT_DIR);
         extensions = null;
+        enable_clear_button = false;
     }
 }

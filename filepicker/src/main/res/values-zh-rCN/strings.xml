@@ -2,6 +2,7 @@
 <resources>
    <string name="cancel_button_label">取消</string>
    <string name="choose_button_label">选择</string>
+   <string name="clear_button_label">清除</string>
    <string name="label_parent_directory">上层目录</string>
    <string name="last_edit">最后修改：</string>
    <string name="error_dir_access">目录无法访问</string>

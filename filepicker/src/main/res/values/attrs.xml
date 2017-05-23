@@ -31,5 +31,9 @@
             name="title_text"
             format="string"/>
 
+        <attr
+            name="enable_clear_button"
+            format="boolean"/>
+
     </declare-styleable>
 </resources>
